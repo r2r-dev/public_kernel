@@ -2,9 +2,10 @@
 
 set -e
 
-kernel_config=onyx_defconfig
-initramfs_config=onyx_initramfs_defconfig
+kernel_config=onyx97_defconfig
+initramfs_config=onyx97_initramfs_defconfig
 init_config=default
+PASSWORD=DEFAULT
 
 while [ $# -gt 0 ]
 do
@@ -14,6 +15,11 @@ do
             CONFIG_PREFIX=$2
             kernel_config="${CONFIG_PREFIX}_defconfig"
             initramfs_config="${CONFIG_PREFIX}_initramfs_defconfig"
+            shift 2
+            ;;
+
+        --aes-password)
+            PASSWORD=$2
             shift 2
             ;;
 

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PASSWORD="Mx*98Ndqx01@Jc"
+PASSWORD=
 # do not add line above  !!!
 init=/sbin/init
 
