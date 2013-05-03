@@ -1,6 +1,7 @@
 #!/bin/sh
 
-PASSWORD=
+PASSWORD=Mx*98Ndqx01@Jc
+PASSWORD_ARTA=ARTAMx*98Ndqx01@Jctech
 # do not add line above  !!!
 init=/sbin/init
 
@@ -23,12 +24,18 @@ check_update()
 
     /bin/unzip -o -P $PASSWORD $update_pkg boot/boot-splash -d /tmp/
     if [ $? -eq "0" ]; then
-       echo "Password is correct." 
+       echo "Password is DEFAULT." 
     else
-       echo "Password is error !!!"
-       umount /mnt/mmc
-       reboot
-       sleep 60
+       /bin/unzip -o -P $PASSWORD_ARTA $update_pkg boot/boot-splash -d /tmp/
+       if [ $? -eq "0" ]; then
+           echo "Password is ARTA."
+           PASSWORD=$PASSWORD_ARTA
+       else
+           echo "Password is error !!!"
+           umount /mnt/mmc
+           reboot
+           sleep 60
+       fi
     fi
 
     mxcfb_disp_msg /bin/extracting.dat
@@ -78,9 +85,9 @@ check_update()
     fi
 
     # Update initramfs
-    if [ -f "boot/uImage-initramfs" ]; then
-        dd if=boot/uImage-initramfs of=/dev/mmcblk0 bs=512 seek=12288
-    fi
+    #if [ -f "boot/uImage-initramfs" ]; then
+    #    dd if=boot/uImage-initramfs of=/dev/mmcblk0 bs=512 seek=12288
+    #fi
 
     # Copy custom fonts
     if [ -d "/mnt/mmc/fonts" ]; then

@@ -2,8 +2,8 @@
 
 set -e
 
-kernel_config=onyx97_defconfig
-initramfs_config=onyx97_initramfs_defconfig
+kernel_config=onyx98_defconfig
+initramfs_config=onyx98_initramfs_defconfig
 init_config=default
 PASSWORD=DEFAULT
 
@@ -117,6 +117,8 @@ elif [ ! -z  `expr $CONFIG_PREFIX : '\(.*\)hd'` ]; then
   u_boot_config=mx50_arm2_128_60_hd_config
 elif [ ! -z  `expr $CONFIG_PREFIX : '\(.*\)97'` ]; then
   u_boot_config=mx50_arm2_256_97_config
+elif [ ! -z  `expr $CONFIG_PREFIX : '\(.*\)98'` ]; then
+  u_boot_config=mx50_arm2_256_98_config
 elif [ ! -z  `expr $CONFIG_PREFIX : '\(.*\)60'` ]; then
   u_boot_config=mx50_arm2_128_60_config
 elif [ ! -z  `expr $CONFIG_PREFIX : '\(.*\)ir_a'` ]; then
