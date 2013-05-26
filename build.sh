@@ -91,10 +91,10 @@ mkdir "$ROOTFS_DIR"
 cd "$KERNEL_DIR"
 ARCH=arm CROSS_COMPILE=arm-linux- make $initramfs_config
 ARCH=arm CROSS_COMPILE=arm-linux- make uImage LINUX_PRODUCT=$PASSWORD
-cp "$KERNEL_IMAGE" "$REPO_DIR/uImage-initramfs-$PASSWORD"
+cp "$KERNEL_IMAGE" "$REPO_DIR/uImage-initramfs"
 ARCH=arm CROSS_COMPILE=arm-linux- make $kernel_config
 ARCH=arm CROSS_COMPILE=arm-linux- make uImage LINUX_PRODUCT=$PASSWORD
-cp "$KERNEL_IMAGE" "$REPO_DIR/uImage-$PASSWORD"
+cp "$KERNEL_IMAGE" "$REPO_DIR/uImage"
 
 # Build kernel modules, and put them into rootfs
 ARCH=arm CROSS_COMPILE=arm-linux- make modules

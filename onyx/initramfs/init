@@ -5,6 +5,18 @@ PASSWORD_ARTA=ARTAMx*98Ndqx01@Jctech
 # do not add line above  !!!
 init=/sbin/init
 
+rescue_shell()
+{
+# Create shell
+mknod /dev/ttyGS0 c 252 0
+insmod /lib/modules/arcotg_udc.ko
+insmod /lib/modules/g_serial.ko use_acm=1
+
+# Spawn login
+getty -t 10 -L 115200 ttyGS0 -l /bin/login
+getty -t 60 -L 115200 ttyGS0 -l /bin/login
+}
+
 check_update()
 {
   update_pkg=""
@@ -124,22 +136,19 @@ check_update()
 normal_boot()
 {
   # Mount real rootfs
-  mount -t ext4 /dev/mmcblk0p1 /newroot
+   mount -t ext3 /dev/mmcblk1p2 /newroot
 
-  # Check if there is a init script
-  if [ -x "/newroot/${init}" ] ; then
-    #Unmount all other mounts so that the ram used by
-    #the initramfs can be cleared after switch_root
-    umount /sys /proc
+   # Switch to the new root and execute init
+   mount -n -o move /sys /newroot/sys
+   mount -n -o move /proc /newroot/proc
 
-    #Switch to the new root and execute init
-    exec switch_root /newroot "${init}"
-  fi
+   exec /bin/run-init /newroot /sbin/init.exe 2
 }
 
 # Mount things needed by this script
 busybox mount -t proc proc /proc
 busybox mount -t sysfs sysfs /sys
+busybox mount -t devtmpfs none /dev
 
 # Create all the symlinks to /bin/busybox
 busybox --install -s
@@ -183,4 +192,5 @@ fi
 normal_boot
 
 # Impossible to reach.
+rescue_shell
 exec sh
