@@ -2566,7 +2566,7 @@ int ar6000_ioctl(struct net_device *dev, struct ifreq *rq, int cmd)
     } else {
         A_STATUS ret = is_iwioctl_allowed(arPriv->arNextMode, cmd);
         if(ret == A_ENOTSUP) {
-            AR_DEBUG_PRINTF(ATH_DEBUG_ERR,("iwioctl: cmd=0x%x not allowed in this mode\n", cmd));
+            /*AR_DEBUG_PRINTF(ATH_DEBUG_ERR,("iwioctl: cmd=0x%x not allowed in this mode\n", cmd));*/
             ret = -EOPNOTSUPP;
             goto ioctl_done;
         } else if (ret == A_ERROR) {
