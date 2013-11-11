@@ -3255,6 +3255,7 @@ mx50_arm2_iram_config \
 mx50_arm2_config  \
 mx50_arm2_128_97_config  \
 mx50_arm2_256_97_config  \
+mx50_arm2_256_98_config \
 mx50_arm2_128_60_config  \
 mx50_arm2_128_60_hd_config  \
 mx50_arm2_128_60_hd_pvi_config  \
