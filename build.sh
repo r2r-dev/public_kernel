@@ -107,7 +107,7 @@ make ATH_LINUXPATH=$KERNEL_DIR
 make install ATH_LINUXPATH=$KERNEL_DIR INSTALL_MOD_PATH=$ROOTFS_DIR
 
 # Build u-boot
-u_boot_config=mx50_arm2_config
+u_boot_config=mx50_arm2_256_98_config
 if [ ! -z  `expr $CONFIG_PREFIX : '\(.*\)hd_pvi'` ]; then
   u_boot_config=mx50_arm2_128_60_hd_pvi_config
   if [ ! -z $MEM_SIZE ] ; then
